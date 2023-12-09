@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../cmponents/SectionTitle";
 import ServiceCard from "../../cmponents/ServiceCard";
 import Banner from "./banner/Banner";
+import Doctors from "./doctors/Doctors";
 
 
 const Home = () => {
@@ -32,6 +33,10 @@ const Home = () => {
                     service ={service}
                 ></ServiceCard>)
             }
+            </div>
+
+            <div>
+                <Doctors></Doctors>
             </div>
         </div>
     );

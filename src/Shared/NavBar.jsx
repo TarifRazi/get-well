@@ -2,11 +2,17 @@ import { Link, NavLink } from "react-router-dom";
 import userImg from "../assets/user.png"
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import useAppointments from "../Hooks/useAppointments";
+import useBookTest from "../Hooks/useBookTest";
+import { FaAddressCard, FaBeer, FaCalendarMinus } from 'react-icons/fa';
 
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext)
+    const [appointment] = useAppointments()
+    const [tests] = useBookTest()
+    console.log(appointment)
 
     const handleLogOut = () => {
         console.log('logout')
@@ -19,9 +25,14 @@ const NavBar = () => {
 
     const navItem = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/appointments'}>My Appointment</NavLink></li>
-        <li><NavLink to={'/testResult'}>Test Result</NavLink></li>
+        <li><NavLink to={'/dashboard/appointments'}>My Appointment
+            <div className="badge ">+{appointment.length}</div>
+        </NavLink></li>
+        <li><NavLink to={'/dashboard/testResult'}>Test Result
+            <div className="badge ">+{tests.length}</div>
+        </NavLink></li>
         <li><NavLink to={'/login'}>Login</NavLink></li>
+        {/* <li><NavLink to={'/dashboard/adminPage'}><FaAddressCard className="text-2xl" /></NavLink></li> */}
     </>
 
     return (
@@ -48,7 +59,7 @@ const NavBar = () => {
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                
+
                                 <img alt="User Avatar" src={user?.photoURL || userImg} />
 
                             </div>

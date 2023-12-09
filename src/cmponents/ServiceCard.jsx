@@ -1,5 +1,12 @@
+import { Link } from "react-router-dom";
+
+
 const ServiceCard = ({ service }) => {
-    const { title, description, cost,image,discount } = service || {};
+    const { _id, title, description, cost, image, discount } = service || {};
+
+    // const handleDetails = (_id) => {
+    //     console.log(_id)
+    // }
 
     return (
         <div>
@@ -11,7 +18,11 @@ const ServiceCard = ({ service }) => {
                     <p>Cost: ${cost}</p>
                     <p className="text-red-600 font-semibold">Discount: ${discount}</p>
                     <div className="card-actions justify-end">
+
+                        <Link to={`/testDetails/${_id}`}>
                         <button className="btn btn-primary">Details</button>
+                        </Link>
+
                     </div>
                 </div>
             </div>

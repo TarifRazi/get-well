@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../../cmponents/SocialLogin";
+
 
 
 
 const Register = () => {
 
+  const axiosPublic = useAxiosPublic()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const { createUser, updateUser } = useContext(AuthContext);
   const navigate = useNavigate()
@@ -22,15 +26,26 @@ const Register = () => {
         updateUser(data.name, data.image)
           .then(() => {
             console.log('updated successfully')
-            reset
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'User created successfully.',
-              showConfirmButton: false,
-              timer: 1500
-            });
-            navigate('/')
+            const userInfo = {
+              name: data.name,
+              email: data.email
+            }
+            axiosPublic.post('/users', userInfo)
+              .then(res => {
+                if (res.data.insertedId) {
+                  console.log('user added to database')
+                  reset();
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'User created successfully.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate('/')
+                }
+              })
+
           }).catch((error) => {
             console.log(error)
           });
@@ -92,6 +107,8 @@ const Register = () => {
               <div className="form-control mt-6">
                 <input className="btn btn-primary" type="submit" value="Login" />
               </div>
+              <SocialLogin></SocialLogin>
+
             </form>
           </div>
         </div>
