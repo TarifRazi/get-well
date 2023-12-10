@@ -9,6 +9,7 @@ import Register from "../pages/registration/Register";
 import TestDetails from "../cmponents/TestDetails";
 import DashBoard from "../layout/DashBoard";
 import Admin from "../pages/dashboard/Admin";
+import AllUsers from "../pages/dashboard/AllUsers";
 
 export const routers = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ export const routers = createBrowserRouter([
                 path: 'testResult',
                 element: <PrivetRoute><TestResult></TestResult></PrivetRoute>
             },
+            {
+                path:'allUsers',
+                element:<AllUsers></AllUsers>
+            }
         ]
     }
 ])
