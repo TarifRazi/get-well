@@ -1,12 +1,12 @@
 import Swal from "sweetalert2";
 import useAppointments from "../../Hooks/useAppointments";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
 
 
 const MyAppointments = () => {
 
     const [appointment,refetch] = useAppointments()
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosPrivet()
     const totalFees = appointment.reduce((total, appointmentDoctor) => {
         const feeAsNumber =
             typeof appointmentDoctor.visit_fee === "string"

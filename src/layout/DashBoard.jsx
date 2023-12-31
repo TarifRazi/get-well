@@ -1,9 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 
 
 const DashBoard = () => {
 
-    const isAdmin = true
+    const [isAdmin] = useAdmin()
 
     return (
         <div className="flex">
@@ -14,6 +15,8 @@ const DashBoard = () => {
                             <li><NavLink to={'/dashboard/adminPage'}>Admin</NavLink></li>
                             <li><NavLink to={'/dashboard/addServices'}>Add Services</NavLink></li>
                             <li><NavLink to={'/dashboard/addDoctor'}>Add Doctor</NavLink></li>
+                            <li><NavLink to={'/dashboard/manageServices'}>Manage services</NavLink></li>
+                            <li><NavLink to={'/dashboard/manageDoctors'}>Manage Doctors</NavLink></li>
                             <li><NavLink to={'/dashboard/allUsers'}>All Users</NavLink></li>
                         </> : <>
                             <li><NavLink to="/dashboard/userHome">User Home</NavLink></li>

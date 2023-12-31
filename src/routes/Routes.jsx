@@ -10,6 +10,14 @@ import TestDetails from "../cmponents/TestDetails";
 import DashBoard from "../layout/DashBoard";
 import Admin from "../pages/dashboard/Admin";
 import AllUsers from "../pages/dashboard/AllUsers";
+import AddServices from "../pages/dashboard/AddServices";
+import AdminRoute from "./AdminRoute";
+import AddDoctor from "../pages/dashboard/AddDoctor";
+import ManageServices from "../pages/dashboard/ManageServices";
+import UpdateService from "../pages/dashboard/UpdateService";
+import MyProfile from "../pages/MyProfile";
+import ManageDoctors from "../pages/dashboard/ManageDoctors";
+import UpdateDoctor from "../pages/dashboard/UpdateDoctor";
 
 export const routers = createBrowserRouter([
     {
@@ -29,6 +37,11 @@ export const routers = createBrowserRouter([
                 element: <Register></Register>
             },
             {
+                path: '/myProfile/:email',
+                element: <MyProfile></MyProfile>,
+                loader:({params})=> fetch(`http://localhost:5000/users/${params.email}`)
+            },
+            {
                 path: '/testDetails/:id',
                 element: <PrivetRoute><TestDetails></TestDetails></PrivetRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
@@ -36,13 +49,45 @@ export const routers = createBrowserRouter([
         ]
     },
     {
-        path:'dashboard',
-        element:<PrivetRoute><DashBoard></DashBoard></PrivetRoute>,
-        children:[
+        path: 'dashboard',
+        element: <PrivetRoute><DashBoard></DashBoard></PrivetRoute>,
+        children: [
             {
-                path:'adminPage',
-                element:<Admin></Admin>
+                path: 'adminPage',
+                element: <AdminRoute><Admin></Admin></AdminRoute>
             },
+            {
+                path: 'addServices',
+                element: <AdminRoute><AddServices></AddServices></AdminRoute>
+            },
+            {
+                path: 'allUsers',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: 'addDoctor',
+                element: <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
+            },
+            {
+                path: 'manageServices',
+                element: <AdminRoute><ManageServices></ManageServices></AdminRoute>
+            },
+            {
+                path: 'manageDoctors',
+                element: <AdminRoute><ManageDoctors></ManageDoctors></AdminRoute>
+            },
+            {
+                path: 'updateService/:id',
+                element: <AdminRoute><UpdateService></UpdateService></AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+            },
+            {
+                path: 'updateDoctor/:id',
+                element: <AdminRoute><UpdateDoctor></UpdateDoctor></AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/doctors/${params.id}`)
+            },
+
+            // normal users
             {
                 path: 'appointments',
                 element: <PrivetRoute><MyAppointments></MyAppointments></PrivetRoute>
@@ -50,11 +95,8 @@ export const routers = createBrowserRouter([
             {
                 path: 'testResult',
                 element: <PrivetRoute><TestResult></TestResult></PrivetRoute>
-            },
-            {
-                path:'allUsers',
-                element:<AllUsers></AllUsers>
             }
+
         ]
     }
 ])

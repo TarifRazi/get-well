@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import useAppointments from "../Hooks/useAppointments";
 import useBookTest from "../Hooks/useBookTest";
-import { FaAddressCard, FaBeer, FaCalendarMinus } from 'react-icons/fa';
 
 
 const NavBar = () => {
@@ -12,7 +11,7 @@ const NavBar = () => {
     const { user, logOut } = useContext(AuthContext)
     const [appointment] = useAppointments()
     const [tests] = useBookTest()
-    console.log(appointment)
+    // console.log(appointment)
 
     const handleLogOut = () => {
         console.log('logout')
@@ -47,7 +46,7 @@ const NavBar = () => {
                             {navItem}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <a className="btn btn-ghost text-xl">get-well</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -74,12 +73,30 @@ const NavBar = () => {
                             }
 
                             {
+                                user ? (
+                                    <>
+                                        
+                                        <Link to={`/myProfile/${user?.email}`}>
+                                            <button className="text-center btn btn-ghost w-full">My Profile</button>
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li className="text-center">Please login</li>
+                                    </>
+                                )
+                            }
+
+
+                            {
                                 user ? <>
                                     <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
                                 </> : <>
-                                    <li> <Link to={'/login'}>Login</Link> </li>
+                                    <li className="w-full items-center text-center"> <Link to={'/login'}>Login</Link> </li>
                                 </>
                             }
+
+
                         </ul>
                     </div>
 

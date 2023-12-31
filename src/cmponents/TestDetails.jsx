@@ -1,7 +1,7 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAxiosPrivet from "../Hooks/useAxiosPrivet";
 import useBookTest from "../Hooks/useBookTest";
 
 
@@ -11,7 +11,7 @@ const TestDetails = () => {
     const { title, description, cost, image, discount, slots, _id } = service || {};
     const navigate = useNavigate();
     const {user} = useAuth();
-    const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosPrivet();
     const [,refetch] = useBookTest()
 
 

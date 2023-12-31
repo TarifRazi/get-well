@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAxiosPrivet from "../Hooks/useAxiosPrivet";
 import useAppointments from "../Hooks/useAppointments";
 
 
@@ -11,8 +11,8 @@ const DoctorCard = ({ doctors }) => {
     const { user } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
-    const axiosSecure = useAxiosSecure()
-    const[, refetch]= useAppointments()
+    const axiosSecure = useAxiosPrivet()
+    const [, refetch] = useAppointments()
 
     const handleAddAppointment = () => {
         // console.log('hlw', user.email)
@@ -72,9 +72,9 @@ const DoctorCard = ({ doctors }) => {
                     <div>
                         <h2>Schedule:</h2>
                         <ul>
-                            {Object.entries(schedule).map(([day, time]) => (
-                                <li key={day}>
-                                    <strong>{day}:</strong> {time}
+                            {schedule.map((schedule) => (
+                                <li key={schedule.time}>
+                                    <strong>{schedule.day}:</strong> {schedule.time}
                                 </li>
                             ))}
                         </ul>

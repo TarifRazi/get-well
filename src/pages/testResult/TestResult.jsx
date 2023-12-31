@@ -1,13 +1,13 @@
 import Swal from "sweetalert2";
 import useBookTest from "../../Hooks/useBookTest";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosPrivet from "../../Hooks/useAxiosPrivet";
 
 
 const TestResult = () => {
 
     const [tests, refetch] = useBookTest()
     const totalCost = tests.reduce((total, tests) => total + tests.cost, 0)
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosPrivet()
 
     const handleDelete = id => {
         Swal.fire({
