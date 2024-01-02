@@ -39,12 +39,12 @@ export const routers = createBrowserRouter([
             {
                 path: '/myProfile/:email',
                 element: <MyProfile></MyProfile>,
-                loader:({params})=> fetch(`http://localhost:5000/users/${params.email}`)
+                loader:({params})=> fetch(`https://get-well-server.vercel.app/users/${params.email}`)
             },
             {
                 path: '/testDetails/:id',
                 element: <PrivetRoute><TestDetails></TestDetails></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://get-well-server.vercel.app/services/${params.id}`)
             },
         ]
     },
@@ -79,12 +79,12 @@ export const routers = createBrowserRouter([
             {
                 path: 'updateService/:id',
                 element: <AdminRoute><UpdateService></UpdateService></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://get-well-server.vercel.app/services/${params.id}`)
             },
             {
                 path: 'updateDoctor/:id',
                 element: <AdminRoute><UpdateDoctor></UpdateDoctor></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/doctors/${params.id}`)
+                loader: ({ params }) => fetch(`https://get-well-server.vercel.app/doctors/${params.id}`)
             },
 
             // normal users

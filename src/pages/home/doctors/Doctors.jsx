@@ -7,7 +7,7 @@ const Doctors = () => {
 
     const [allDoctors, setAllDoctors] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/doctors`)
+        fetch(`https://get-well-server.vercel.app/doctors`)
             .then((res) => res.json())
             .then((data) => setAllDoctors(data))
 
