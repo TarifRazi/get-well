@@ -6,7 +6,7 @@ import useAuth from "./useAuth";
 
 const useAppointments = () => {
     const axiosSecure = useAxiosPrivet();
-    const { user } = useAuth();
+    const { user,loading } = useAuth();
     const { refetch, data: appointment = [] } = useQuery({
         queryKey: ['appointment', user?.email],
         queryFn: async () => {
@@ -14,7 +14,7 @@ const useAppointments = () => {
             return res.data;
         },
     });
-    return [appointment, refetch];
+    return [appointment, refetch,loading];
 };
 
 export default useAppointments;

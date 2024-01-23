@@ -28,7 +28,10 @@ const Register = () => {
             console.log('updated successfully')
             const userInfo = {
               name: data.name,
-              email: data.email
+              email: data.email,
+              bloodGroup: data.bloodGroup,
+              district: data.district,
+              upazila: data.upazila
             }
             axiosPublic.post('/users', userInfo)
               .then(res => {
@@ -88,6 +91,54 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
+                  <span className="label-text">Blood group</span>
+                </label>
+                {/* <input name="age" type="number"  {...register("age")} placeholder="Age" className="input input-bordered" required /> */}
+                <select name="bloodGroup" {...register("bloodGroup")} className="select select-bordered w-full ">
+                  <option disabled selected>Select your blood group</option>
+                  <option>A+</option>
+                  <option>A-</option>
+                  <option>B+</option>
+                  <option>B-</option>
+                  <option>O+</option>
+                  <option>O-</option>
+                  <option>AB+</option>
+                  <option>AB-</option>
+                </select>
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">District</span>
+                </label>
+                {/* <input name="age" type="number"  {...register("age")} placeholder="Age" className="input input-bordered" required /> */}
+                <select name="district" {...register("district")} className="select select-bordered w-full ">
+                  <option disabled selected>Select your blood group</option>
+                  <option>Dhaka</option>
+                  <option>Brahmanbaria</option>
+                  <option>Cumilla</option>
+                  <option>Chandpur</option>
+                  <option>Habiganj</option>
+                </select>
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Upazila</span>
+                </label>
+                {/* <input name="age" type="number"  {...register("age")} placeholder="Age" className="input input-bordered" required /> */}
+                <select name="upazila" {...register("upazila")} className="select select-bordered w-full ">
+                  <option disabled selected>Select your blood group</option>
+                  <option>Savar</option>
+                  <option>Kasba</option>
+                  <option>Bansarampur</option>
+                  <option>Motlab</option>
+                  <option>Keraniganj</option>
+                  <option>Gazipur</option>
+                  <option>Akhaora</option>
+                  <option>B.Shador</option>
+                </select>
+              </div>
+              <div className="form-control">
+                <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input type="password"  {...register("password", {
@@ -105,7 +156,7 @@ const Register = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <input className="btn btn-primary" type="submit" value="Login" />
+                <input className="btn btn-primary" type="submit" value="Register" />
               </div>
               <SocialLogin></SocialLogin>
 

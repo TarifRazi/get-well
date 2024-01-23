@@ -18,6 +18,7 @@ import UpdateService from "../pages/dashboard/UpdateService";
 import MyProfile from "../pages/MyProfile";
 import ManageDoctors from "../pages/dashboard/ManageDoctors";
 import UpdateDoctor from "../pages/dashboard/UpdateDoctor";
+import UpdateMyProfile from "../pages/UpdateMyProfile";
 
 export const routers = createBrowserRouter([
     {
@@ -38,8 +39,11 @@ export const routers = createBrowserRouter([
             },
             {
                 path: '/myProfile/:email',
-                element: <MyProfile></MyProfile>,
-                loader:({params})=> fetch(`https://get-well-server.vercel.app/users/${params.email}`)
+                element: <PrivetRoute><MyProfile></MyProfile></PrivetRoute>
+            },
+            {
+                path: '/updateMyProfile/:email',
+                element: <PrivetRoute><UpdateMyProfile></UpdateMyProfile></PrivetRoute>
             },
             {
                 path: '/testDetails/:id',
